@@ -9,8 +9,8 @@ import java.util.function.Function;
 
 public class SessionCount implements Function<List<SleepingSession>, SleepAnalysisResult> {
     @Override
-    public SleepAnalysisResult apply(List<SleepingSession> list) {
-        return new SleepAnalysisResult(list.size(), "Количество сессий сна: ");
+    public SleepAnalysisResult apply(List<SleepingSession> sessions) {
+        return new SleepAnalysisResult(sessions.size(), "Количество сессий сна: ");
     }
 
 

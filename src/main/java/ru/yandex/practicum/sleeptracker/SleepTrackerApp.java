@@ -10,6 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -39,6 +40,8 @@ public class SleepTrackerApp {
             functions.add(new MinSessionDuration());
             functions.add(new AvgSessionDuration());
             functions.add(new BadSessionsCount());
+            functions.add(new SleeplessNightsCount());
+            functions.add(new SleepUserType());
             functions.stream()
                     .forEach(function -> {
                         var funcResult = function.apply(sessions);
@@ -46,11 +49,13 @@ public class SleepTrackerApp {
                         //System.out.println(funcResult.getResult());
                     });
 
-            SleepAnalysisResult s = functions.getFirst().apply(sessions);
+           /* SleepAnalysisResult s = functions.get(2).apply(sessions);
             System.out.println(s.getDescription());
             System.out.println(s.getResult());
-
-
+            System.out.println(sessions.get(2).getStart().toLocalDate().isBefore(sessions.get(2).getFinish().toLocalDate()));
+            System.out.println(sessions.get(2).getStart().toLocalDate());
+            System.out.println(sessions.get(2).getFinish().toLocalDate());
+            System.out.println(LocalTime.of(2,4));*/
 
         } catch (IOException e) {
             System.out.println("Проблема чтения файла" + e.getMessage());
