@@ -4,7 +4,6 @@ import ru.yandex.practicum.sleeptracker.SleepAnalysisResult;
 import ru.yandex.practicum.sleeptracker.SleepingSession;
 
 import java.time.Duration;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Function;
 
@@ -17,7 +16,7 @@ public class MaxSessionDuration implements Function<List<SleepingSession>, Sleep
                 .orElse(0);
         //Object obj = count;
 
-        return new SleepAnalysisResult(count,"Самая долгая сессия сна: ");
+        return new SleepAnalysisResult(count, "Самая долгая сессия сна: ");
     }
 }
 

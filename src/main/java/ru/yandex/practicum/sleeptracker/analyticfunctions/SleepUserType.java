@@ -30,19 +30,19 @@ public class SleepUserType implements Function<List<SleepingSession>, SleepAnaly
                 )
                 .collect(Collectors.toList());
         List<SleepingSession> skylark = nightSessions.stream()
-                        .filter(session -> (session.getStart().toLocalTime().isBefore(LocalTime.of(22,0))
-                                && session.getFinish().toLocalTime().isBefore(LocalTime.of(7,0)))
+                .filter(session -> (session.getStart().toLocalTime().isBefore(LocalTime.of(22, 0))
+                        && session.getFinish().toLocalTime().isBefore(LocalTime.of(7, 0)))
 
-                        )
-                                .collect(Collectors.toList());
+                )
+                .collect(Collectors.toList());
         UserType result;
         int owlNights = owl.size();
-                int skylarkNights = skylark.size();
-                        int pigeonNights = nightSessions.size() - owlNights - skylarkNights;
+        int skylarkNights = skylark.size();
+        int pigeonNights = nightSessions.size() - owlNights - skylarkNights;
         if (owlNights > skylarkNights && owlNights > pigeonNights) {
             result = UserType.OWL;
         } else if (skylarkNights > owlNights && skylarkNights > pigeonNights) {
-result = UserType.SKYLARK;
+            result = UserType.SKYLARK;
         } else {
             result = UserType.PIGEON;
         }
@@ -51,8 +51,6 @@ result = UserType.SKYLARK;
         for (SleepingSession s : nightSessions) {
             System.out.println("заснул " + s.getStart() + " проснулся " + s.getFinish());
         }*/
-
-
 
 
         return new SleepAnalysisResult(result, "Хронотип этого субъекта: ");

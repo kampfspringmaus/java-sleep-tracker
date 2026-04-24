@@ -69,13 +69,13 @@ public class SleepTrackerAppTest {
     public void isUserTypeEqualsOwl() {
         for (int i = 1; i < 11; i++) {
             sessions.add(new SleepingSession(LocalDateTime.of(26, 2, i, 23, 15),
-                    LocalDateTime.of(26, 2, i+1, 9, 15), SleepingQuality.GOOD));
+                    LocalDateTime.of(26, 2, i + 1, 9, 15), SleepingQuality.GOOD));
 
         }
         SleepUserType sut = new SleepUserType();
         SleepAnalysisResult result = sut.apply(sessions);
         Assertions.assertEquals(UserType.OWL, result.getResult());
-        }
+    }
 
     @Test
     public void isUserTypeEqualsPigeon() {
@@ -88,7 +88,7 @@ public class SleepTrackerAppTest {
     public void isUserTypeEqualsSkylark() {
         for (int i = 1; i < 11; i++) {
             sessions.add(new SleepingSession(LocalDateTime.of(26, 2, i, 21, 40),
-                    LocalDateTime.of(26, 2, i+1, 6, 15), SleepingQuality.GOOD));
+                    LocalDateTime.of(26, 2, i + 1, 6, 15), SleepingQuality.GOOD));
 
         }
         SleepUserType sut = new SleepUserType();
@@ -96,19 +96,24 @@ public class SleepTrackerAppTest {
         Assertions.assertEquals(UserType.SKYLARK, result.getResult());
     }
 
-    /* @Test
-    public void isSleeplessNightsCountBeforeTwelveAMEquals10() {
+    @Test
+    public void isSleeplessNightsCountBeforeTwelveAMEquals1() {
+        SleeplessNightsCount snc = new SleeplessNightsCount();
+        SleepAnalysisResult result = snc.apply(sessions);
+        Assertions.assertEquals(1, result.getResult());
+    }
+
+    @Test
+    public void isSleeplessNightsCountAfterTwelveAMEquals2() {
+        SleepingSession oldSession = sessions.get(0);
+        SleepingSession updatedSession = new SleepingSession(
+                LocalDateTime.of(26, 1, 11, 11, 15),
+                oldSession.getFinish(),
+                oldSession.getQuality());
+        sessions.set(0, updatedSession);
         SleeplessNightsCount snc = new SleeplessNightsCount();
         SleepAnalysisResult result = snc.apply(sessions);
         Assertions.assertEquals(2, result.getResult());
     }
-
-    @Test
-    public void isSleeplessNightsCountAfterTwelveAMEquals10() {
-        sessions.remove(0);
-        SleeplessNightsCount snc = new SleeplessNightsCount();
-        SleepAnalysisResult result = snc.apply(sessions);
-        Assertions.assertEquals(2, result.getResult());
-    }*/
 
 }
