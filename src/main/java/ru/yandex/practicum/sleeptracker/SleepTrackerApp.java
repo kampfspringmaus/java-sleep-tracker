@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 
 public class SleepTrackerApp {
 
-    static void main(String[] args) {
+    public static void main(String[] args) {
         // try (Stream<String> stream = Files.lines(Paths.get("C:\\Users\\p.antipov\\IdeaProjects\\sprint8\\java-sleep-tracker\\src\\main\\resources\\sleep_log.txt"))) {
         try (Stream<String> stream = Files.lines(Paths.get(args[0]))) {
             List<SleepingSession> sessions = new ArrayList<>();

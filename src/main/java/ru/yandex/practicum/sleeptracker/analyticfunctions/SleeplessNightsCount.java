@@ -20,10 +20,8 @@ public class SleeplessNightsCount implements Function<List<SleepingSession>, Sle
         если позже 12, то первая календарная ночь не учитывается*/
         boolean isCurrentNight = whichNightToAccount.test(sessions);
         int totalNights = Period.between(sessions.getFirst().getStart().toLocalDate(), sessions.getLast().getFinish().toLocalDate()).getDays();
-        System.out.println(totalNights);
         if (!isCurrentNight) {
             totalNights = totalNights - 1;
-            System.out.println(totalNights);
         }
         //Смотрим количество ночей, в которые парользователь спал
         int nightSleepSessions = (int) sessions.stream()
