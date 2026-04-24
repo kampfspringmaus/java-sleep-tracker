@@ -23,7 +23,7 @@ public class SleepTrackerApp {
 
     public static void main(String[] args) {
         try (Stream<String> stream = Files.lines(Paths.get("C:\\Users\\p.antipov\\IdeaProjects\\sprint8\\java-sleep-tracker\\src\\main\\resources\\sleep_log.txt"))) {
-            List<SleepingSession> sessions = new LinkedList<>();
+            List<SleepingSession> sessions = new ArrayList<>();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yy HH:mm");
             ArrayList<Function<List<SleepingSession> , SleepAnalysisResult>> functions = new ArrayList<>();
 
@@ -48,14 +48,6 @@ public class SleepTrackerApp {
                         System.out.println(funcResult.getDescription() + funcResult.getResult());
                         //System.out.println(funcResult.getResult());
                     });
-
-           /* SleepAnalysisResult s = functions.get(2).apply(sessions);
-            System.out.println(s.getDescription());
-            System.out.println(s.getResult());
-            System.out.println(sessions.get(2).getStart().toLocalDate().isBefore(sessions.get(2).getFinish().toLocalDate()));
-            System.out.println(sessions.get(2).getStart().toLocalDate());
-            System.out.println(sessions.get(2).getFinish().toLocalDate());
-            System.out.println(LocalTime.of(2,4));*/
 
         } catch (IOException e) {
             System.out.println("Проблема чтения файла" + e.getMessage());
