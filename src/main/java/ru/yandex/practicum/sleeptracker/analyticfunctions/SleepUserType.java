@@ -47,12 +47,6 @@ public class SleepUserType implements Function<List<SleepingSession>, SleepAnaly
             result = UserType.PIGEON;
         }
 
-     /*   System.out.println(nightSessions.size());
-        for (SleepingSession s : nightSessions) {
-            System.out.println("заснул " + s.getStart() + " проснулся " + s.getFinish());
-        }*/
-
-
         return new SleepAnalysisResult(result, "Хронотип этого субъекта: ");
     }
 }

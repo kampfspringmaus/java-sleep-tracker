@@ -7,18 +7,17 @@ import java.time.LocalTime;
 import java.time.Period;
 import java.util.List;
 import java.util.function.Function;
-import java.util.function.Predicate;
 
 public class SleeplessNightsCount implements Function<List<SleepingSession>, SleepAnalysisResult> {
     @Override
     public SleepAnalysisResult apply(List<SleepingSession> sessions) {
+        if (sessions == null || sessions.size() == 0) {
+            return new SleepAnalysisResult(0,"Количество бессонных ночей: ");
+        }
         //Определяем, какую ночь считать бессонной
-        Predicate<List<SleepingSession>> whichNightToAccount = (sleepingList) -> {
-            return sleepingList.get(0).getStart().toLocalTime().isBefore(LocalTime.of(12, 0));
-        };
+        boolean isCurrentNight = sessions.get(0).getStart().toLocalTime().isBefore(LocalTime.of(12, 0));
         /*если в логе сна первая запись начинается раньше 12 часов дня, то берём все ночи в расчёт,
         если позже 12, то первая календарная ночь не учитывается*/
-        boolean isCurrentNight = whichNightToAccount.test(sessions);
         int totalNights = Period.between(sessions.getFirst().getStart().toLocalDate(), sessions.getLast().getFinish().toLocalDate()).getDays();
         if (!isCurrentNight) {
             totalNights = totalNights - 1;
